@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daria AI Studio</title>
+<style>
+  body { margin: 0; font-family: Arial, sans-serif; background: #0f172a; color: #f8fafc; text-align: center; }
+  nav { padding: 16px; }
+  nav button { margin: 4px; padding: 8px 14px; border: 1px solid #38bdf8; background: none; color: #f8fafc; border-radius: 20px; cursor: pointer; }
+  nav button.active { background: #38bdf8; color: #0f172a; }
+  main { padding: 60px 20px; max-width: 700px; margin: auto; }
+  h1 { font-size: 40px; margin-bottom: 10px; }
+  p { font-size: 20px; line-height: 1.5; color: #cbd5e1; }
+  .btn { display: inline-block; margin-top: 24px; padding: 14px 28px; background: #38bdf8; color: #0f172a; border-radius: 30px; text-decoration: none; font-weight: bold; }
+</style>
+</head>
+<body>
+<nav>
+  <button data-lang="pl">PL</button>
+  <button data-lang="ru">RU</button>
+  <button data-lang="ua">UA</button>
+  <button data-lang="en">EN</button>
+</nav>
+<main>
+  <h1>Daria AI Studio</h1>
+  <p id="text"></p>
+  <a class="btn" id="cta" href="#"></a>
+</main>
+<script>
+const texts = {
+  pl: ["Tworzę strony internetowe, asystentów AI i boty Telegram dla Twojej firmy.", "Napisz do mnie"],
+  ru: ["Создаю сайты, AI-помощников и Telegram-ботов для вашего бизнеса.", "Написать мне"],
+  ua: ["Створюю сайти, AI-помічників і Telegram-ботів для вашого бізнесу.", "Написати мені"],
+  en: ["I build websites, AI assistants and Telegram bots for your business.", "Contact me"]
+};
+function setLang(lang) {
+  document.getElementById("text").textContent = texts[lang][0];
+  document.getElementById("cta").textContent = texts[lang][1];
+  document.documentElement.lang = lang;
+  document.querySelectorAll("nav button").forEach(function (b) {
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+}
+document.querySelectorAll("nav button").forEach(function (b) {
+  b.addEventListener("click", function () { setLang(b.dataset.lang); });
+});
+setLang("pl");
+</script>
+</body>
+</html>
