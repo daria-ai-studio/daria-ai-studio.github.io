@@ -50,6 +50,7 @@
     <div class="card"><h3 id="s1-t"></h3><p id="s1-p"></p></div>
     <div class="card"><h3 id="s2-t"></h3><p id="s2-p"></p></div>
     <div class="card"><h3 id="s3-t"></h3><p id="s3-p"></p></div>
+    <div class="card"><h3 id="s4-t"></h3><p id="s4-p"></p></div>
   </div>
 </section>
 <section id="portfolio">
@@ -75,18 +76,18 @@ const contacts = {
 // ======================================================================================
 
 const sections = {
-  pl: ["Usługi", "Moje prace", "Kontakt", "Strony internetowe", "Nowoczesne strony w kilku językach, wygodne na telefonie.", "Asystenci AI", "Inteligentny pomocnik, który odpowiada klientom 24/7.", "Boty Telegram i automatyzacja", "Zapisy, zamówienia i powiadomienia bez ręcznej pracy.", "Pierwsze projekty pojawią się tu już wkrótce."],
-  ru: ["Услуги", "Мои работы", "Контакты", "Сайты", "Современные сайты на нескольких языках, удобные на телефоне.", "AI-помощники", "Умный помощник, который отвечает клиентам 24/7.", "Telegram-боты и автоматизация", "Запись, заказы и уведомления без ручной работы.", "Первые проекты скоро появятся здесь."],
-  ua: ["Послуги", "Мої роботи", "Контакти", "Сайти", "Сучасні сайти кількома мовами, зручні на телефоні.", "AI-помічники", "Розумний помічник, який відповідає клієнтам 24/7.", "Telegram-боти та автоматизація", "Запис, замовлення та сповіщення без ручної роботи.", "Перші проєкти незабаром з'являться тут."],
-  en: ["Services", "My work", "Contact", "Websites", "Modern multilingual websites that work great on phones.", "AI assistants", "A smart helper that answers your clients 24/7.", "Telegram bots & automation", "Bookings, orders and notifications without manual work.", "First projects coming soon."]
+  pl: ["Usługi", "Moje prace", "Kontakt", "Strony internetowe", "Nowoczesne strony w kilku językach, wygodne na telefonie.", "Asystenci AI", "Inteligentny pomocnik, który odpowiada klientom 24/7.", "Boty Telegram i automatyzacja", "Zapisy, zamówienia i powiadomienia bez ręcznej pracy.", "Pierwsze projekty pojawią się tu już wkrótce.", "Reklamowe wideo AI", "Krótkie pionowe filmy 9:16 do Instagram Reels, TikToka i YouTube Shorts."],
+  ru: ["Услуги", "Мои работы", "Контакты", "Сайты", "Современные сайты на нескольких языках, удобные на телефоне.", "AI-помощники", "Умный помощник, который отвечает клиентам 24/7.", "Telegram-боты и автоматизация", "Запись, заказы и уведомления без ручной работы.", "Первые проекты скоро появятся здесь.", "Рекламные AI-ролики", "Короткие вертикальные видео 9:16 для Instagram Reels, TikTok и YouTube Shorts."],
+  ua: ["Послуги", "Мої роботи", "Контакти", "Сайти", "Сучасні сайти кількома мовами, зручні на телефоні.", "AI-помічники", "Розумний помічник, який відповідає клієнтам 24/7.", "Telegram-боти та автоматизація", "Запис, замовлення та сповіщення без ручної роботи.", "Перші проєкти незабаром з'являться тут.", "Рекламні AI-ролики", "Короткі вертикальні відео 9:16 для Instagram Reels, TikTok і YouTube Shorts."],
+  en: ["Services", "My work", "Contact", "Websites", "Modern multilingual websites that work great on phones.", "AI assistants", "A smart helper that answers your clients 24/7.", "Telegram bots & automation", "Bookings, orders and notifications without manual work.", "First projects coming soon.", "AI video ads", "Short vertical 9:16 videos for Instagram Reels, TikTok and YouTube Shorts."]
 };
-const sectionIds = ["services-title", "portfolio-title", null, "s1-t", "s1-p", "s2-t", "s2-p", "s3-t", "s3-p", "portfolio-text"];
+const sectionIds = ["services-title", "portfolio-title", null, "s1-t", "s1-p", "s2-t", "s2-p", "s3-t", "s3-p", "portfolio-text", "s4-t", "s4-p"];
 
 const texts = {
-  pl: ["Tworzę strony internetowe, asystentów AI i boty Telegram dla Twojej firmy.", "Napisz do mnie", "Kontakt", "Zadzwoń"],
-  ru: ["Создаю сайты, AI-помощников и Telegram-ботов для вашего бизнеса.", "Написать мне", "Контакты", "Позвонить"],
-  ua: ["Створюю сайти, AI-помічників і Telegram-ботів для вашого бізнесу.", "Написати мені", "Контакти", "Зателефонувати"],
-  en: ["I build websites, AI assistants and Telegram bots for your business.", "Contact me", "Contact", "Call me"]
+  pl: ["Tworzę strony internetowe, reklamowe wideo AI (pionowe 9:16 do Reels i TikToka), asystentów AI i boty Telegram dla Twojej firmy.", "Napisz do mnie", "Kontakt", "Zadzwoń"],
+  ru: ["Создаю сайты, рекламные AI-ролики (вертикальные 9:16 для Reels и TikTok), AI-помощников и Telegram-ботов для вашего бизнеса.", "Написать мне", "Контакты", "Позвонить"],
+  ua: ["Створюю сайти, рекламні AI-ролики (вертикальні 9:16 для Reels і TikTok), AI-помічників і Telegram-ботів для вашого бізнесу.", "Написати мені", "Контакти", "Зателефонувати"],
+  en: ["I create websites, AI video ads (vertical 9:16 for Reels and TikTok), AI assistants and Telegram bots for your business.", "Contact me", "Contact", "Call me"]
 };
 
 function setupContacts() {
