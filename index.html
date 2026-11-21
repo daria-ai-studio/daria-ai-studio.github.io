@@ -44,6 +44,12 @@
   .menu { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 24px 110px 8px; }
   @media (max-width: 600px) { .menu { padding: 70px 16px 8px; } }
   .menu a { color: #cbd5e1; text-decoration: none; }
+  .menu a::before { margin-right: 6px; }
+  .menu a:hover { color: #38bdf8; }
+  #m-services::before { content: "✨"; }
+  #m-about::before { content: "👩‍💻"; }
+  #m-portfolio::before { content: "🎬"; }
+  #m-contact::before { content: "✉️"; }
   .logo { display: block; width: 120px; height: 120px; margin: 0 auto 8px; filter: drop-shadow(0 10px 30px rgba(168,85,247,0.45)); }
 </style>
 </head>
