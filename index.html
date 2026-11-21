@@ -11,8 +11,13 @@
   nav button.active { background: #38bdf8; color: #0f172a; }
   main { padding: 60px 20px; max-width: 700px; margin: auto; }
   h1 { font-size: 40px; margin-bottom: 10px; }
+  h2 { font-size: 28px; }
   p { font-size: 20px; line-height: 1.5; color: #cbd5e1; }
   .btn { display: inline-block; margin-top: 24px; padding: 14px 28px; background: #38bdf8; color: #0f172a; border-radius: 30px; text-decoration: none; font-weight: bold; }
+  #contact { padding: 40px 20px 80px; max-width: 700px; margin: auto; }
+  .contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .contacts a { padding: 12px 22px; border: 1px solid #38bdf8; border-radius: 30px; color: #f8fafc; text-decoration: none; }
+  .contacts a:hover { background: #38bdf8; color: #0f172a; }
 </style>
 </head>
 <body>
@@ -25,26 +30,64 @@
 <main>
   <h1>Daria AI Studio</h1>
   <p id="text"></p>
-  <a class="btn" id="cta" href="#"></a>
+  <a class="btn" id="cta" href="#contact"></a>
 </main>
+<section id="contact">
+  <h2 id="contact-title"></h2>
+  <div class="contacts">
+    <a id="c-email">Email</a>
+    <a id="c-telegram" target="_blank">Telegram</a>
+    <a id="c-whatsapp" target="_blank">WhatsApp</a>
+    <a id="c-phone"></a>
+  </div>
+</section>
 <script>
-const texts = {
-  pl: ["Tworzę strony internetowe, asystentów AI i boty Telegram dla Twojej firmy.", "Napisz do mnie"],
-  ru: ["Создаю сайты, AI-помощников и Telegram-ботов для вашего бизнеса.", "Написать мне"],
-  ua: ["Створюю сайти, AI-помічників і Telegram-ботів для вашого бізнесу.", "Написати мені"],
-  en: ["I build websites, AI assistants and Telegram bots for your business.", "Contact me"]
+// ===== КОНТАКТЫ: впишите данные между кавычками. Пустая строка = кнопка скрыта =====
+const contacts = {
+  email: "sandi1991@op.pl",
+  telegram: "",   // username без @, например: "daria_studio"
+  phone: ""       // номер с кодом страны, только цифры, например: "48500100200" (для WhatsApp и звонка)
 };
+// ======================================================================================
+
+const texts = {
+  pl: ["Tworzę strony internetowe, asystentów AI i boty Telegram dla Twojej firmy.", "Napisz do mnie", "Kontakt", "Zadzwoń"],
+  ru: ["Создаю сайты, AI-помощников и Telegram-ботов для вашего бизнеса.", "Написать мне", "Контакты", "Позвонить"],
+  ua: ["Створюю сайти, AI-помічників і Telegram-ботів для вашого бізнесу.", "Написати мені", "Контакти", "Зателефонувати"],
+  en: ["I build websites, AI assistants and Telegram bots for your business.", "Contact me", "Contact", "Call me"]
+};
+
+function setupContacts() {
+  const email = document.getElementById("c-email");
+  const telegram = document.getElementById("c-telegram");
+  const whatsapp = document.getElementById("c-whatsapp");
+  const phone = document.getElementById("c-phone");
+  if (contacts.email) { email.href = "mailto:" + contacts.email; } else { email.hidden = true; }
+  if (contacts.telegram) { telegram.href = "https://t.me/" + contacts.telegram; } else { telegram.hidden = true; }
+  if (contacts.phone) {
+    whatsapp.href = "https://wa.me/" + contacts.phone;
+    phone.href = "tel:+" + contacts.phone;
+  } else {
+    whatsapp.hidden = true;
+    phone.hidden = true;
+  }
+}
+
 function setLang(lang) {
   document.getElementById("text").textContent = texts[lang][0];
   document.getElementById("cta").textContent = texts[lang][1];
+  document.getElementById("contact-title").textContent = texts[lang][2];
+  document.getElementById("c-phone").textContent = texts[lang][3];
   document.documentElement.lang = lang;
   document.querySelectorAll("nav button").forEach(function (b) {
     b.classList.toggle("active", b.dataset.lang === lang);
   });
 }
+
 document.querySelectorAll("nav button").forEach(function (b) {
   b.addEventListener("click", function () { setLang(b.dataset.lang); });
 });
+setupContacts();
 setLang("pl");
 </script>
 </body>
