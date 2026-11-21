@@ -18,6 +18,13 @@
   .contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   .contacts a { padding: 12px 22px; border: 1px solid #38bdf8; border-radius: 30px; color: #f8fafc; text-decoration: none; }
   .contacts a:hover { background: #38bdf8; color: #0f172a; }
+  #services, #portfolio { padding: 40px 20px; max-width: 900px; margin: auto; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; text-align: left; }
+  .card { border: 1px solid #1e293b; background: #111c33; border-radius: 16px; padding: 20px; }
+  .card h3 { margin: 0 0 8px; color: #38bdf8; }
+  .card p { font-size: 16px; margin: 0; }
+  .menu { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding-bottom: 8px; }
+  .menu a { color: #cbd5e1; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -27,11 +34,28 @@
   <button data-lang="ua">UA</button>
   <button data-lang="en">EN</button>
 </nav>
+<div class="menu">
+  <a href="#services" id="m-services"></a>
+  <a href="#portfolio" id="m-portfolio"></a>
+  <a href="#contact" id="m-contact"></a>
+</div>
 <main>
   <h1>Daria AI Studio</h1>
   <p id="text"></p>
   <a class="btn" id="cta" href="#contact"></a>
 </main>
+<section id="services">
+  <h2 id="services-title"></h2>
+  <div class="grid">
+    <div class="card"><h3 id="s1-t"></h3><p id="s1-p"></p></div>
+    <div class="card"><h3 id="s2-t"></h3><p id="s2-p"></p></div>
+    <div class="card"><h3 id="s3-t"></h3><p id="s3-p"></p></div>
+  </div>
+</section>
+<section id="portfolio">
+  <h2 id="portfolio-title"></h2>
+  <p id="portfolio-text"></p>
+</section>
 <section id="contact">
   <h2 id="contact-title"></h2>
   <div class="contacts">
@@ -45,10 +69,18 @@
 // ===== КОНТАКТЫ: впишите данные между кавычками. Пустая строка = кнопка скрыта =====
 const contacts = {
   email: "sandi1991@op.pl",
-  telegram: "",   // username без @, например: "daria_studio"
+  telegram: "",   // позже: username Telegram-бота без @
   phone: ""       // номер с кодом страны, только цифры, например: "48500100200" (для WhatsApp и звонка)
 };
 // ======================================================================================
+
+const sections = {
+  pl: ["Usługi", "Moje prace", "Kontakt", "Strony internetowe", "Nowoczesne strony w kilku językach, wygodne na telefonie.", "Asystenci AI", "Inteligentny pomocnik, który odpowiada klientom 24/7.", "Boty Telegram i automatyzacja", "Zapisy, zamówienia i powiadomienia bez ręcznej pracy.", "Pierwsze projekty pojawią się tu już wkrótce."],
+  ru: ["Услуги", "Мои работы", "Контакты", "Сайты", "Современные сайты на нескольких языках, удобные на телефоне.", "AI-помощники", "Умный помощник, который отвечает клиентам 24/7.", "Telegram-боты и автоматизация", "Запись, заказы и уведомления без ручной работы.", "Первые проекты скоро появятся здесь."],
+  ua: ["Послуги", "Мої роботи", "Контакти", "Сайти", "Сучасні сайти кількома мовами, зручні на телефоні.", "AI-помічники", "Розумний помічник, який відповідає клієнтам 24/7.", "Telegram-боти та автоматизація", "Запис, замовлення та сповіщення без ручної роботи.", "Перші проєкти незабаром з'являться тут."],
+  en: ["Services", "My work", "Contact", "Websites", "Modern multilingual websites that work great on phones.", "AI assistants", "A smart helper that answers your clients 24/7.", "Telegram bots & automation", "Bookings, orders and notifications without manual work.", "First projects coming soon."]
+};
+const sectionIds = ["services-title", "portfolio-title", null, "s1-t", "s1-p", "s2-t", "s2-p", "s3-t", "s3-p", "portfolio-text"];
 
 const texts = {
   pl: ["Tworzę strony internetowe, asystentów AI i boty Telegram dla Twojej firmy.", "Napisz do mnie", "Kontakt", "Zadzwoń"],
@@ -78,6 +110,10 @@ function setLang(lang) {
   document.getElementById("cta").textContent = texts[lang][1];
   document.getElementById("contact-title").textContent = texts[lang][2];
   document.getElementById("c-phone").textContent = texts[lang][3];
+  sectionIds.forEach(function (id, i) { if (id) document.getElementById(id).textContent = sections[lang][i]; });
+  document.getElementById("m-services").textContent = sections[lang][0];
+  document.getElementById("m-portfolio").textContent = sections[lang][1];
+  document.getElementById("m-contact").textContent = sections[lang][2];
   document.documentElement.lang = lang;
   document.querySelectorAll("nav button").forEach(function (b) {
     b.classList.toggle("active", b.dataset.lang === lang);
