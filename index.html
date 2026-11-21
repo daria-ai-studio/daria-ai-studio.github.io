@@ -24,6 +24,12 @@
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; text-align: left; }
   .card { border: 1px solid #1e293b; background: #111c33; border-radius: 16px; padding: 20px; }
   .card h3 { margin: 0 0 8px; color: #38bdf8; }
+  .card .icon { font-size: 34px; margin-bottom: 10px; }
+  .card { transition: transform 0.25s, border-color 0.25s; }
+  .card:hover { transform: translateY(-4px); border-color: #a855f7; }
+  .anim .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .anim .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .anim .reveal { opacity: 1; transform: none; transition: none; } }
   .card p { font-size: 16px; margin: 0; }
   .menu { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding-bottom: 8px; }
   .menu a { color: #cbd5e1; text-decoration: none; }
@@ -51,10 +57,10 @@
 <section id="services">
   <h2 id="services-title"></h2>
   <div class="grid">
-    <div class="card"><h3 id="s1-t"></h3><p id="s1-p"></p></div>
-    <div class="card"><h3 id="s2-t"></h3><p id="s2-p"></p></div>
-    <div class="card"><h3 id="s3-t"></h3><p id="s3-p"></p></div>
-    <div class="card"><h3 id="s4-t"></h3><p id="s4-p"></p></div>
+    <div class="card"><div class="icon">🌐</div><h3 id="s1-t"></h3><p id="s1-p"></p></div>
+    <div class="card"><div class="icon">🤖</div><h3 id="s2-t"></h3><p id="s2-p"></p></div>
+    <div class="card"><div class="icon">💬</div><h3 id="s3-t"></h3><p id="s3-p"></p></div>
+    <div class="card"><div class="icon">🎬</div><h3 id="s4-t"></h3><p id="s4-p"></p></div>
   </div>
 </section>
 <section id="about">
@@ -136,6 +142,22 @@ document.querySelectorAll("nav button").forEach(function (b) {
 });
 setupContacts();
 setLang("pl");
+
+// Плавное появление блоков при прокрутке
+if ("IntersectionObserver" in window) {
+  document.documentElement.classList.add("anim");
+  const items = document.querySelectorAll("main, section h2, .card, #about p, #portfolio p, .contacts, .logo");
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(function (el, i) {
+    el.classList.add("reveal");
+    el.style.transitionDelay = (el.classList.contains("card") ? (i % 4) * 0.12 : 0) + "s";
+    io.observe(el);
+  });
+}
 </script>
 </body>
 </html>
